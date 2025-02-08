@@ -1,15 +1,16 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
 class Lead(models.Model):
-    address = models.CharField(max_length=255, verbose_name="Address")
-    phone = models.CharField(max_length=15, verbose_name="Phone")
-    email = models.EmailField(verbose_name="Email")
-
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default="new", choices=[
+        ("new", "New"),
+        ("contacted", "Contacted"),
+        ("qualified", "Qualified"),
+        ("closed", "Closed"),
+    ])
 
     def __str__(self):
-        return f"{self.address} - {self.email}"
+        return f"{self.email} - {self.status}"
