@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
@@ -18,12 +19,12 @@ def submit_lead(request):
         lead = Lead.objects.create(address=address, phone=phone, email=email)
 
         # Send notification to the team
-        # send_mail(
-        #     "New Lead Submitted",
-        #     f"New lead from {lead.email}:\n\nAddress: {lead.address}\nPhone: {lead.phone}",
-        #     "noreply@quicksolutions.com",
-        #     ["hodgesd@gmail.com"],
-        # )
+        send_mail(
+            "New Lead Submitted",
+            f"New lead from {lead.email}:\n\nAddress: {lead.address}\nPhone: {lead.phone}",
+            "noreply@quicksolutions.com",
+            ["hodgesd@gmail.com"],
+        )
 
         # Render HTMX response
         return render(request, 'leads_app/lead_response.html', {'address': address, 'phone': phone, 'email': email})
