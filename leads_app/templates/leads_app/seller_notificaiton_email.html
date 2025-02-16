@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You from STL House Buyers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #1f2937;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .email-header img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .email-header h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: bold;
+        }
+        .email-body {
+            padding: 20px;
+        }
+        .email-body h2 {
+            color: #374151;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .email-footer {
+            background-color: #f3f4f6;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #fbbf24;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #f59e0b;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <!-- Header -->
+        <div class="email-header">
+            <img src="{% static 'images/wide_logo.png' %}" alt="STL House Buyers">
+            <h1>STL House Buyers</h1>
+        </div>
+
+        <!-- Body -->
+        <div class="email-body">
+            <h2>Thank You for Reaching Out!</h2>
+            <p>Hello {{ name }},</p>
+            <p>Thank you for reaching out to us! We’ve received your request and one of our team members will be in touch with you shortly to discuss your property and how we can help.</p>
+            <p>Our goal is to make the home-selling process as simple and hassle-free as possible for you.</p>
+            <p>If you have any urgent questions, feel free to call us directly at <strong>+1 (800) 273-5546</strong>.</p>
+            <a href="https://yourwebsite.com" class="btn">Learn More About Us</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p>&copy; {{ year }} STL House Buyers. All rights reserved.</p>
+            <p>
+                <a href="https://yourwebsite.com" style="color: #fbbf24;">Visit Our Website</a> |
+                <a href="mailto:support@yourwebsite.com" style="color: #fbbf24;">Contact Support</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
