@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi --log-file -
+web: cd leads && gunicorn config.wsgi --log-file -
