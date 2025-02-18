@@ -56,14 +56,26 @@ def manage_leads(request):
     leads = Lead.objects.all()
     return render(request, 'leads_app/manage_leads.html', {'leads': leads})
 
+
+import json
+
 @csrf_exempt
 def update_lead_status(request, lead_id):
     if request.method == "PUT":
         lead = get_object_or_404(Lead, id=lead_id)
-        new_status = request.PUT.get('status')  # Use Django's request.PUT parser
+
+        # Parse JSON request body
+        try:
+            data = json.loads(request.body)
+            new_status = data.get('status')  # Extract 'status' from JSON payload
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+
         lead.status = new_status
         lead.save()
         return JsonResponse({'status': 'success', 'new_status': lead.status})
+
+
 
 @csrf_exempt
 def delete_lead(request, lead_id):
@@ -71,3 +83,4 @@ def delete_lead(request, lead_id):
         lead = get_object_or_404(Lead, id=lead_id)
         lead.delete()
         return JsonResponse({'status': 'success'})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
